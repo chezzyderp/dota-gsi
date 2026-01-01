@@ -1,5 +1,5 @@
 {
-	"name": "dota-gsi",
+	"name": "@chezzyderp/dota-gsi",
 	"version": "1.0.0",
 	"description": "Dota2 game state integration server.",
 	"license": "MIT",
