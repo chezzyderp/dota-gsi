@@ -3,17 +3,24 @@
 	"version": "1.0.0",
 	"description": "Dota2 game state integration server.",
 	"license": "MIT",
-  	"author": "Ivan Tezin <ivantezin2@gmail.com>",
+	"author": "Ivan Tezin <ivantezin2@gmail.com>",
 	"type": "module",
-	"main": "dist/index.js",   
-	"types": "dist/index.d.ts",   
-	"files": ["dist"],  
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"dev": "tsx ./src/index.ts",
 		"build": "tsc",
-    	"prepublishOnly": "npm run build"
+		"prepublishOnly": "npm run build"
 	},
-	"keywords": ["dota", "gsi", "events", "dota-gsi"],
+	"keywords": [
+		"dota",
+		"gsi",
+		"events",
+		"dota-gsi"
+	],
 	"dependencies": {
 		"@types/express": "^5.0.6",
 		"body-parser": "^2.2.1",
@@ -21,6 +28,10 @@
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3",
 		"winston": "^3.19.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chezzyderp/dota-gsi"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.10",
