@@ -1,7 +1,7 @@
 {
 	"name": "@chezzyderp/dota-gsi",
 	"version": "1.0.0",
-	"description": "Dota2 game state integration server.",
+	"description": "Library for working with Dota2 Game State Integration (GSI)",
 	"license": "MIT",
 	"author": "Ivan Tezin <ivantezin2@gmail.com>",
 	"type": "module",

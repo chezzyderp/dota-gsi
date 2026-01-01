@@ -1,73 +1,83 @@
 # DotaGSI
 
-Node.js/TypeScript библиотека для работы с **Dota 2 Game State Integration (GSI)**.  
-Позволяет подписываться на изменения состояния игры с возможностью фильтрации по маске.
+Node.js/TypeScript library for working with **Dota2 Game State Integration (GSI)**.  
+Allows you to subscribe to game state changes with the ability to filter by mask.
 
-## Установка
+
+## Quick Start
+
+### Installing
 
 ```bash
 npm install dota-gsi
 ```
 
-или
-
-```bash
-yarn add dota-gsi
-```
-
-> Требуется Node.js 18+.
-
 ---
 
-## Использование
+### Creating a GSI configuration
+Make sure that you have the created config in the directory
+```steamapps\common\dota 2 beta version\game\dota\cfg\gamestate_integration```
 
+For example, with a file like ```gamestate_integration_dota2-gsi.cfg``` with such contents
+
+``` 
+"dota2-gsi Configuration"
+{
+    "uri"               "http://localhost:3000/"
+    "timeout"           "5.0"
+    "buffer"            "0.1"
+    "throttle"          "0.1"
+    "heartbeat"         "30.0"
+    "data"
+    {
+        "buildings"     "1"
+        "provider"      "1"
+        "map"           "1"
+        "player"        "1"
+        "hero"          "1"
+        "abilities"     "1"
+        "items"         "1"
+        "draft"         "1"
+        "wearables"     "1"
+    }
+    "auth"
+    {
+        "token"         "hello1234"
+    }
+}
+```
+
+Also, don't forget to add the "-gamestateintegration" flag to the Dota2 launch options on Steam.
+
+```
+ Steam -> Dota2 -> Properties -> General -> Launch Options
+```
+
+
+
+### Code example
 ```ts
 import { DotaGSI } from 'dota-gsi'
 
 const gsi = new DotaGSI({
-  port: 3000, // порт сервера для приема GSI
-  clientTokens: ['hello1234'], // токены клиентов, если нужно
+  port: 3000, // Server port for receiving GSI
+  clientTokens: ['hello1234'], // client tokens, if necessary
 })
-```
 
-### Подписка на события
-
-Используется метод `on` с **маской**, которая повторяет структуру `GSIEvent`.  
-В маске можно указать `true` для примитивов или объектов, чтобы получать изменения по ним.
-
-```ts
 gsi.on(
   {
     player: { kills: true, deaths: true },
-    hero: true, // подписка на всю структуру hero
+    hero: true, // Subscribe to the entire hero structure
   },
   (changes) => {
-    console.log('Изменения:', changes)
+    console.log('Changes:', changes)
   },
 )
 ```
 
-- `changes` будет содержать только изменённые поля, соответствующие маске.
-- Если значение в маске — объект, то возвращается объект с изменениями внутри него.
-
 ---
 
-## Методы
-
-### `on(mask, listener)`
-
-Подписка на изменения по маске:
-
-- **mask** — объект с булевыми значениями, повторяющий структуру `GSIEvent`.
-- **listener** — функция, которая вызывается при изменениях:
-
-```ts
-(listener: (changes: DeepPartial<GSIEvent>) => void)
-```
-
----
-
-## Пример структуры GSIEvent
+## Example of GSIEvent
 
 ```ts
 interface GSIEvent {
