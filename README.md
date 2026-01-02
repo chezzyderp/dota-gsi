@@ -9,7 +9,7 @@ Allows you to subscribe to game state changes with the ability to filter by mask
 ### Installing
 
 ```bash
-npm install dota-gsi
+npm i @chezzyderp/dota-gsi
 ```
 
 ---
